@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ContentWrapper from "../../../components/ContentWrapper/Contentwrapper"
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper"
 import "../Home.scss"
 import SwitchTabs from '../../../Components/switchTabs/SwitchTabs';
 import useFetch from "../../../hooks/UseFetch";
@@ -26,10 +26,11 @@ const Trending = () => {
             <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange}/>
 
         
-        
+            </ContentWrapper> 
       <Carousel data={data?.results} loading={loading} endpoint={endPoint}/>
-      </ContentWrapper>
+      
     </div>
+    
   )
 }
 

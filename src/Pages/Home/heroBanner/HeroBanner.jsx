@@ -6,7 +6,7 @@ import "./style.scss";
 import useFetch from "../../../hooks/UseFetch";
 
 import Img from "../../../components/lazyLoadImage/Img";
-import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper"
 
 const HeroBanner = () => {
     const [background, setBackground] = useState("");
@@ -50,7 +50,7 @@ const HeroBanner = () => {
                             onChange={(e) => setQuery(e.target.value)}
                             onKeyUp={searchQueryHandler}
                         />
-                        <button>Search</button>
+                        <button onClick={()=>navigate(`/search/${query}`)}>Search</button>
                     </div>
                 </div>
             </ContentWrapper>

@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "./style.scss";
 
-import ContentWrapper from "../contentWrapper/ContentWrapper";
+import ContentWrapper from "../contentWrapper/ContentWrapper"
 import logo from "../../assets/logo.png"
 
 const Header = () => {
@@ -14,7 +14,7 @@ const Header = () => {
     const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenu, setMobileMenu] = useState(false);
     const [query, setQuery] = useState("");
-    const [showSearch, setShowSearch] = useState("");
+    const [showSearch, setShowSearch] = useState(false); // Changed initial state to false
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -26,7 +26,7 @@ const Header = () => {
     const controlNavbar = ()=>{
       // console.log(window.scrollY) // it tells kitna scroll hua hai
       
-      if(Window.scrollY > 200){
+      if(window.scrollY > 200){
         if(window.scrollY > lastScrollY && !mobileMenu){
             setShow("hide")
         }else{
@@ -53,14 +53,11 @@ const Header = () => {
       setMobileMenu(false);
     }
     const searchQueryHandler = (event) => {
-      if (event.key === "Enter" && query.length > 0) {
-          navigate(`/search/${query}`);
+      const inputValue = event.target.value; // Get the current input value directly from the event
+      if (event.key === "Enter" && inputValue.length > 0) {
+        navigate(`/search/${inputValue}`);
       }
-      setTimeout(()=>{
-          setShowSearch(false);
-      },1000)
-
-  };
+    };
 
   const navigationHandler = (type)=>{
     if(type==="movie"){
@@ -69,6 +66,7 @@ const Header = () => {
       navigate("/explore/tv");
     }
     setMobileMenu(false);
+    setShowSearch(false); // Close the search bar when navigation is done
   }
 
     const openMobileMenu = ()=>{
