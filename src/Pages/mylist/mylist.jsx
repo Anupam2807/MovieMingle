@@ -1,5 +1,5 @@
 import Select from "react-select/base";
-import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
+import ContentWrapper from "../../components/ContentWrapper/Contentwrapper.jsx";
 import "./style.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
