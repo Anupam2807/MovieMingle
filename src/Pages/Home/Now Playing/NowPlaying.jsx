@@ -10,8 +10,8 @@ const TopRated = () => {
   const [endPoint,setEndPoint] = useState("movie");
   const[endPoint1,setEndPoint1] = useState("now_playing")
   
-  //api format /trending/all/{time_window}
   const {data,loading} = useFetch(`/${endPoint}/${endPoint1}`);
+
 
 
   
@@ -19,6 +19,8 @@ const TopRated = () => {
       setEndPoint(tab==="Movie" ? "movie" : "tv");
         setEndPoint1(tab==="Movie"?"now_playing" : "airing_today");
   }
+
+
   return (
     
 
@@ -29,7 +31,7 @@ const TopRated = () => {
 
         
         </ContentWrapper>
-      <Carousel data={data?.results} loading={loading}/>
+      <Carousel data={data?.results} loading={loading} endpoint={endPoint} />
 
     </div>
   )

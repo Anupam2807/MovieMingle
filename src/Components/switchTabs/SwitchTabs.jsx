@@ -13,7 +13,6 @@ const activeTab = (tab,index)=>{
     },300);
     onTabChange(tab,index);
 }
-console.log(data);
     
   return (
     <div className='switchingTabs'>

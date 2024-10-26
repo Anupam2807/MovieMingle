@@ -11,6 +11,8 @@ import PosterFallback from "../../assets/no-poster.png";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
     const { url } = useSelector((state) => state.home);
+    console.log("data,dasd",data.genres)
+    const genres = data.genres || data.genre_ids;
     const navigate = useNavigate();
     const posterUrl = data.poster_path
         ? url.poster + data.poster_path
@@ -27,7 +29,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
                 {!fromSearch && (
                     <React.Fragment>
                         <CircleRating rating={data.vote_average.toFixed(1)} />
-                        <Genres data={data.genre_ids.slice(0, 2)} />
+                        <Genres data={genres.slice(0, 2)} />
                     </React.Fragment>
                 )}
             </div>

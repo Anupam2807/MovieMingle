@@ -2,137 +2,168 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
+import { FiUser } from "react-icons/fi"; // User Icon
 import { useNavigate, useLocation } from "react-router-dom";
 
 import "./style.scss";
 
-import ContentWrapper from "../contentWrapper/ContentWrapper"
-import logo from "../../assets/logo.png"
+import ContentWrapper from "../contentWrapper/ContentWrapper";
+import logo from "../../assets/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../../Store/userSlice";
+import toast from "react-hot-toast";
 
-const Header = () => {
-    const [show, setShow] = useState("top");
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const [mobileMenu, setMobileMenu] = useState(false);
-    const [query, setQuery] = useState("");
-    const [showSearch, setShowSearch] = useState(false); // Changed initial state to false
-    const navigate = useNavigate();
-    const location = useLocation();
+const Header = () => {  
+  const [show, setShow] = useState("top");
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [query, setQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const user = useSelector((state) => state.user?.user?.user);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
-    useEffect(()=>{
-      window.scrollTo(0,0); // every time take scroll to start when page changes 
-    },[location])
-
-    const controlNavbar = ()=>{
-      // console.log(window.scrollY) // it tells kitna scroll hua hai
-      
-      if(window.scrollY > 200){
-        if(window.scrollY > lastScrollY && !mobileMenu){
-            setShow("hide")
-        }else{
-            setShow("show")
-        }
-       
-      }else{
-        setShow("top")
+  const controlNavbar = () => {
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastScrollY && !mobileMenu) {
+        setShow("hide");
+      } else {
+        setShow("show");
       }
-      setLastScrollY(window.scrollY);
-    };
-
-    useEffect(()=>{
-      window.addEventListener("scroll",controlNavbar)
-      return ()=>{
-        window.removeEventListener("scroll",controlNavbar)
-      }
-      
-    },[lastScrollY])
-
-
-    const openSearch = ()=>{
-      setShowSearch(true);
-      setMobileMenu(false);
+    } else {
+      setShow("top");
     }
-    const searchQueryHandler = (event) => {
-      const inputValue = event.target.value; // Get the current input value directly from the event
-      if (event.key === "Enter" && inputValue.length > 0) {
-        navigate(`/search/${inputValue}`);
-      }
-    };
+    setLastScrollY(window.scrollY);
+  };
 
-  const navigationHandler = (type)=>{
-    if(type==="movie"){
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
+
+  const openSearch = () => {
+    setShowSearch(true);
+    setMobileMenu(false);
+  };
+  
+  const searchQueryHandler = (event) => {
+    const inputValue = event.target.value;
+    if (event.key === "Enter" && inputValue.length > 0) {
+      navigate(`/search/${inputValue}`);
+    }
+  };
+
+  const navigationHandler = (type) => {
+    if (type === "movie") {
       navigate("/explore/movie");
-    }else{
+    } else {
       navigate("/explore/tv");
     }
     setMobileMenu(false);
-    setShowSearch(false); // Close the search bar when navigation is done
+    setShowSearch(false);
+  };
+
+  const openMobileMenu = () => {
+    setMobileMenu(true);
+    setShowSearch(false);
+  };
+  
+  const handleSignOut = () => {
+    dispatch(userData({}));
+    localStorage.removeItem("user");
+    toast.success("Logged out Successfully!");
+  };
+
+  const handleListNavigation = ()=>{
+    if(user){
+      navigate("/mywatchlist")
+    }
+    else{
+      toast("Please log in into your account");
+      setTimeout(()=>{
+        navigate("/auth")
+      },1000)
+    }
   }
 
-    const openMobileMenu = ()=>{
-        setMobileMenu(true);
-        setShowSearch(false);
-    }
 
-    return (
-      <header className={`header ${mobileMenu? "mobileView" : ""} ${show}` }>
-        <ContentWrapper>
-        <div className="logo" onClick={()=>(navigate("/"))}>
-          <img src={logo}  alt="logo" className=""/>
+  return (
+    <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
+      <ContentWrapper>
+        <div className="logo" onClick={() => navigate("/")}>
+          <img src={logo} alt="logo" />
         </div>
+
         <ul className="menuItems">
-          <li className="menuItem" onClick={()=>{
-            navigationHandler("movie")
-          }}>Movies</li>
-          <li className="menuItem" onClick={()=>{
-            navigationHandler("tv")
-          }}>TV Shows</li>
-          <li className="menuItem"><HiOutlineSearch onClick={openSearch}/></li>
+          <li className="menuItem" onClick={() => navigationHandler("movie")}>Movies</li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>TV Shows</li>
+          
+          <li className="menuItem" onClick={handleListNavigation}>My Watchlist</li>
 
 
-        </ul>
 
-        <div className="mobileMenuItems">
-          <HiOutlineSearch onClick={openSearch}/>
-          {mobileMenu ? (
-            <VscChromeClose onClick={()=>{
-              setMobileMenu(false);
-            }}/>
-          ):(
-            <SlMenu onClick={openMobileMenu}/>
+          {user && (
+            <>
+              
+              <li className="menuItem">
+                <button onClick={handleSignOut}>Sign Out</button>
+              </li>
+            </>
           )}
-          
-          
-        </div>
 
+          {!user && (
+            <li className="menuItem ">
+              <button onClick={() => navigate("/auth")}>Sign In</button>
+            </li>
+          )}
 
-
-
-        </ContentWrapper>
-        {showSearch && <div className="searchBar">
-            <ContentWrapper>
-            <div className="searchInput">
-                        <input
-                            type="text"
-                            placeholder="Search for a movie or tv show...."
-                            onChange={(e) => setQuery(e.target.value)}
-                            onKeyUp={searchQueryHandler}
-                        />
-                       <VscChromeClose onClick={()=>{
-                        setShowSearch(false);
-                       }}/>
-                    </div>
-
+          <li className="menuItem">
+            <HiOutlineSearch onClick={openSearch} />
+          </li>
+          {user &&
+ <li className="menuItem userProfile">
+ <FiUser />
+ <span className="">{user?.username}</span>
+</li>
+          }
+         
+        </ul>
         
 
-            </ContentWrapper>
-
-
+        <div className="mobileMenuItems">
+          <HiOutlineSearch onClick={openSearch} />
+          {mobileMenu ? (
+            <VscChromeClose onClick={() => setMobileMenu(false)} />
+          ) : (
+            <SlMenu onClick={openMobileMenu} />
+          )}
         </div>
-}
+      </ContentWrapper>
 
-      </header>
-    );
+      {showSearch && (
+        <div className="searchBar">
+          <ContentWrapper>
+            <div className="searchInput">
+              <input
+                type="text"
+                placeholder="Search for a movie or tv show..."
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyUp={searchQueryHandler}
+              />
+              <VscChromeClose onClick={() => setShowSearch(false)} />
+            </div>
+          </ContentWrapper>
+        </div>
+      )}
+    </header>
+  );
 };
 
 export default Header;

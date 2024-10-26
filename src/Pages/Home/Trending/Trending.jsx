@@ -8,7 +8,6 @@ import Carousel from '../../../Components/Carousel/Carousel';
 
 const Trending = () => {
   const [endPoint,setEndPoint] = useState("day");
-  //api format /trending/all/{time_window}
   const {data,loading} = useFetch(`/trending/all/${endPoint}`);
 
 

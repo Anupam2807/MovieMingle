@@ -10,13 +10,17 @@ import SearchResult from "./Pages/searchResultPage/SearchResult"
 import Details from "./Pages/Details/Details"
 import Explore from "./Pages/explore/Explore"
 import PageNotFound from "./Pages/404/PageNotFound";
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import {BrowserRouter,Routes,Route, useLocation} from "react-router-dom";
+import Auth from "./Pages/Auth/auth";
+import MyList from "./Pages/mylist/mylist";
+import { Toaster } from 'react-hot-toast';
+
  
 function App() {
   const dispatch = useDispatch()
   const {url} = useSelector((state)=>
   state.home)
-  console.log(url);
+
   useEffect(()=>{
     genresCall(); 
     fetchApiConfig();
@@ -48,13 +52,11 @@ function App() {
 
 
     const data = await Promise.all(promises); // dono api call ka response saath me return hoga
-    data.map(({genres})=>{
+    data?.map(({genres})=>{
       return genres.map((item)=>(allGenres[item.id] = item)) //save genree on the basis of id
     })
     dispatch(getGenres(allGenres));
     
-
-
 
   }
 
@@ -62,8 +64,10 @@ function App() {
 
   return (
    <BrowserRouter>
+    <Toaster/>
 
-    <Header/>
+ <Header />
+    
 
     <Routes>
       <Route path="/"  element={<Home/>} />
@@ -71,7 +75,8 @@ function App() {
       <Route path="/search/:query" element={<SearchResult/>} />
       <Route path="/explore/:mediaType" element={<Explore/>} />
       <Route path="*" element={<PageNotFound/>} />
-
+      <Route path="/auth" element ={<Auth/>} />
+      <Route path="/mywatchlist" element={<MyList/>}/>
 
 
     </Routes>
@@ -79,8 +84,8 @@ function App() {
   
    
    
-   <Footer/>
-   </BrowserRouter>
+    {location.pathname !== "/auth" && <Footer />}
+    </BrowserRouter>
 
 
 

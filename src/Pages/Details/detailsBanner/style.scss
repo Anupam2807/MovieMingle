@@ -1,4 +1,5 @@
 @import "../../../mixins.scss";
+
 .detailsBanner {
     width: 100%;
     background-color: var(--black);
@@ -9,6 +10,7 @@
         padding-top: 120px;
         min-height: 700px;
     }
+
     .backdrop-img {
         width: 100%;
         height: 100%;
@@ -17,6 +19,7 @@
         left: 0;
         opacity: 0.1;
         overflow: hidden;
+
         .lazy-load-image-background {
             width: 100%;
             height: 100%;
@@ -28,6 +31,7 @@
             }
         }
     }
+
     .opacity-layer {
         width: 100%;
         height: 250px;
@@ -50,6 +54,7 @@
             gap: 50px;
             flex-direction: row;
         }
+
         .left {
             flex-shrink: 0;
             .posterImg {
@@ -61,8 +66,10 @@
                 }
             }
         }
+
         .right {
             color: white;
+
             .title {
                 font-size: 28px;
                 line-height: 40px;
@@ -71,6 +78,7 @@
                     line-height: 44px;
                 }
             }
+
             .subtitle {
                 font-size: 16px;
                 line-height: 24px;
@@ -82,16 +90,20 @@
                     line-height: 28px;
                 }
             }
+
             .genres {
                 margin-bottom: 25px;
                 flex-flow: row wrap;
             }
+
             .overview {
                 margin-bottom: 25px;
+
                 .heading {
                     font-size: 24px;
                     margin-bottom: 10px;
                 }
+
                 .description {
                     line-height: 24px;
                     @include md {
@@ -99,31 +111,40 @@
                     }
                 }
             }
+
             .circleRating {
                 max-width: 70px;
                 background-color: var(--black2);
                 @include md {
                     max-width: 90px;
                 }
+
                 .CircularProgressbar-text {
                     fill: white;
                 }
             }
-            .playbtn {
+
+            .playbtn,
+            .bookmark-btn {
                 display: flex;
                 align-items: center;
                 gap: 20px;
                 cursor: pointer;
+
                 svg {
                     width: 60px;
+                    font-size: 60px;
                     @include md {
                         width: 80px;
                     }
                 }
+
                 .text {
                     font-size: 20px;
                     transition: all 0.7s ease-in-out;
                 }
+
+                .bookmark-icon,
                 .triangle {
                     stroke-dasharray: 240;
                     stroke-dashoffset: 480;
@@ -131,48 +152,83 @@
                     transform: translateY(0);
                     transition: all 0.7s ease-in-out;
                 }
+
                 .circle {
                     stroke: white;
                     stroke-dasharray: 650;
                     stroke-dashoffset: 1300;
                     transition: all 0.5s ease-in-out;
                 }
+
                 &:hover {
                     .text {
                         color: var(--pink);
                     }
-                    .triangle {
+
+                    .triangle,
+                    .bookmark-icon {
                         stroke-dashoffset: 0;
                         opacity: 1;
                         stroke: var(--pink);
                         animation: trailorPlay 0.7s ease-in-out;
                     }
+
                     .circle {
                         stroke-dashoffset: 0;
                         stroke: var(--pink);
                     }
+
+                    .bookmark-icon {
+                        transform: scale(1.1); 
+                        fill: var(--pink); 
+                    }
                 }
             }
+
             .row {
                 display: flex;
                 align-items: center;
                 gap: 25px;
+                flex-wrap: wrap; // Allow wrapping on small screens
                 margin-bottom: 25px;
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+
+                    .circleRating,
+                    .playbtn {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%; // Make full width on small screens
+                    }
+                }
+
+                @media (min-width: 768px) {
+                    flex-direction: row;
+                    .playbtn {
+                        display: flex;
+                        justify-content: start;
+                        width: 100%; // Make full width on small screens
+                    }
+                }
             }
 
             .info {
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 padding: 15px 0;
                 display: flex;
+
                 .infoItem {
                     margin-right: 10px;
                     display: flex;
                     flex-flow: row wrap;
                 }
+
                 .text {
                     margin-right: 10px;
                     opacity: 0.5;
                     line-height: 24px;
+
                     &.bold {
                         font-weight: 600;
                         opacity: 1;
@@ -191,10 +247,12 @@
             gap: 50px;
             flex-direction: row;
         }
+
         .contentWrapper {
             display: flex;
             gap: 50px;
         }
+
         .left {
             flex-shrink: 0;
             width: 100%;
@@ -205,17 +263,21 @@
                 max-width: 350px;
             }
         }
+
         .right {
             width: 100%;
+
             .row {
                 width: 100%;
                 height: 25px;
                 margin-bottom: 20px;
                 border-radius: 50px;
+
                 &:nth-child(2) {
                     width: 75%;
                     margin-bottom: 50px;
                 }
+
                 &:nth-child(5) {
                     width: 50%;
                     margin-bottom: 50px;
