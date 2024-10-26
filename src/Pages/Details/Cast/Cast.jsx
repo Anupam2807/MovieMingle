@@ -2,10 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import "./style.scss";
-
-import ContentWrapper from "../../../Components/ContentWrapper/Contentwrapper.jsx"
-import Img from "../../../components/lazyLoadImage/Img";
 import avatar from "../../../assets/avatar.png";
+import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper";
+import Img from "../../../Components/lazyLoadImage/Img";
 
 const Cast = ({ data, loading }) => {
     const { url } = useSelector((state) => state.home);

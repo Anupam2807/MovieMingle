@@ -5,11 +5,9 @@ import dayjs from "dayjs";
 
 import "./style.scss";
 
-import ContentWrapper from "../../../components/ContentWrapper/Contentwrapper.jsx";
+import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper.jsx";
 import UseFetch from "../../../hooks/UseFetch.jsx";
-import Genres from "../../../components/genres/Genres";
 import CircleRating from "../../../Components/circleRating/CirlceRating.jsx";
-import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import Playicon from "../Playicon.jsx";
 import VideoPopup from "../../../Components/videoPopUp/VideoPopUp.jsx";
@@ -17,6 +15,8 @@ import { GoBookmark } from "react-icons/go";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { GoBookmarkSlash } from "react-icons/go";
+import Genres from "../../../Components/Genres/Genres.jsx";
+import Img from "../../../Components/lazyLoadImage/Img.jsx";
 
 const DetailsBanner = ({ video, crew }) => {
   const [show, setShow] = useState(false);

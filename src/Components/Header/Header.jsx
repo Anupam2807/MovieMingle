@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "./style.scss";
 
-import ContentWrapper from "../ContentWrapper/Contentwrapper.jsx";
+import ContentWrapper from "../ContentWrapper/ContentWrapper.jsx";
 import logo from "../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../Store/userSlice";

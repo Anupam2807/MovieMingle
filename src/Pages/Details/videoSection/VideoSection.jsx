@@ -2,11 +2,10 @@ import React, { useState } from "react";
 
 import "./style.scss";
 
-import ContentWrapper from "../../../components/ContentWrapper/Contentwrapper.jsx"
+import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper.jsx"
 import PlayIcon from "../Playicon";
-import VideoPopUp from '../../../components/videoPopUp/VideoPopUp.jsx';
-import Img from "../../../components/lazyLoadImage/Img";
-
+import Img from "../../../Components/lazyLoadImage/Img.jsx";
+import VideoPopup from "../../../Components/videoPopUp/VideoPopUp.jsx";
 const VideosSection = ({ data, loading }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
@@ -52,7 +51,7 @@ const VideosSection = ({ data, loading }) => {
                     </div>
                 )}
             </ContentWrapper>
-            <VideoPopUp
+            <VideoPopup
                 show={show}
                 setShow={setShow}
                 videoId={videoId}

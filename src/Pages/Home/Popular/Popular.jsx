@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ContentWrapper from "../../../components/ContentWrapper/Contentwrapper.jsx"
+import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper.jsx"
 import "../Home.scss"
 import SwitchTabs from '../../../Components/switchTabs/SwitchTabs';
 import useFetch from "../../../hooks/UseFetch";

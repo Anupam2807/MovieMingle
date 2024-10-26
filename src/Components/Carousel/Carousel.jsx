@@ -13,7 +13,7 @@ import PosterFallback from "../../assets/no-poster.png";
 
 import "./style.scss";
 
-import ContentWrapper from "../ContentWrapper/Contentwrapper.jsx";
+import ContentWrapper from "../ContentWrapper/ContentWrapper.jsx";
 import CircleRating from "../circleRating/CirlceRating";
 import Genres from "../Genres/Genres";
 
