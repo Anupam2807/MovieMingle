@@ -16,7 +16,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { GoBookmarkSlash } from "react-icons/go";
 import Genres from "../../../Components/Genres/Genres.jsx";
-import Img from "../../../Components/lazyLoadImage/Img.jsx";
+import Img from "../../../Components/LazyLoadImage/Img.jsx";
+
 
 const DetailsBanner = ({ video, crew }) => {
   const [show, setShow] = useState(false);

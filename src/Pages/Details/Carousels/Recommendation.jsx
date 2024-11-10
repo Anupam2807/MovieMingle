@@ -1,6 +1,6 @@
 import React from "react";
 import UseFetch from "../../../hooks/UseFetch";
-import Carousel from "../../../components/carousel/Carousel";
+import Carousel from "../../../Components/Carousel/Carousel";
 
 const Recommendation = ({ mediaType, id }) => {
     const { data, loading, error } = UseFetch(
