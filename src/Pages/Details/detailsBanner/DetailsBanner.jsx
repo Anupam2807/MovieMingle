@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
@@ -72,9 +72,16 @@ const DetailsBanner = ({ video, crew }) => {
     checkForItem();
   }, [id, user?._id]);
 
-  console.log("loisr", savedInList);
-
+  const navigate = useNavigate();
   const saveToMyWatchlist = async () => {
+    if(!user){
+      setTimeout(()=>{
+        navigate("/auth")
+      })
+      toast("You need to login first")
+      return;
+    }
+    
     try {
       const response = await axios.post(
         `${backendUrl}/api/list/mylist`,
@@ -177,6 +184,8 @@ const DetailsBanner = ({ video, crew }) => {
                         <Playicon />
                         <span className="text">Watch Trailer</span>
                       </div>
+
+                      
                       <div className="bookmark-btn">
                         {savedInList ? (
                           <>
