@@ -7,9 +7,9 @@ import "./style.scss";
 
 import useFetch from "../../hooks/UseFetch";
 import { fetchDataFromAPI } from "../../utils/api";
-import ContentWrapper from "../../Components/ContentWrapper/ContentWrapper.jsx"
 import MovieCard from "../../Components/MovieCard/MovieCard";
 import Spinner from "../../Components/Spinner/Spinner";
+import FooterWrapper from "../../Components/FooterWrapper/footerWrapper";
 
 let filters = {};
 
@@ -98,7 +98,7 @@ const Explore = () => {
 
     return (
         <div className="explorePage">
-            <ContentWrapper>
+            <FooterWrapper>
                 <div className="pageHeader">
                     <div className="pageTitle">
                         {mediaType === "tv"
@@ -160,7 +160,7 @@ const Explore = () => {
                         )}
                     </>
                 )}
-            </ContentWrapper>
+            </FooterWrapper>
         </div>
     );
 };

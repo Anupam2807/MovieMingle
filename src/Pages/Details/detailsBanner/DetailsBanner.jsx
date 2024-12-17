@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 
 import "./style.scss";
 
-import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper.jsx";
 import UseFetch from "../../../hooks/UseFetch.jsx";
 import CircleRating from "../../../Components/circleRating/CirlceRating.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
@@ -17,6 +16,7 @@ import toast from "react-hot-toast";
 import { GoBookmarkSlash } from "react-icons/go";
 import Genres from "../../../Components/Genres/Genres.jsx";
 import Img from "../../../Components/LazyLoadImage/Img.jsx";
+import FooterWrapper from "../../../Components/FooterWrapper/footerWrapper.jsx";
 
 
 const DetailsBanner = ({ video, crew }) => {
@@ -149,7 +149,7 @@ const DetailsBanner = ({ video, crew }) => {
               </div>
               <div className="opacity-layer"></div>
 
-              <ContentWrapper>
+              <FooterWrapper>
                 <div className="content">
                   <div className="left">
                     {data.poster_path ? (
@@ -266,7 +266,7 @@ const DetailsBanner = ({ video, crew }) => {
                     )}
                   </div>
                 </div>
-              </ContentWrapper>
+              </FooterWrapper>
               <VideoPopup
                 show={show}
                 setShow={setShow}
@@ -278,7 +278,7 @@ const DetailsBanner = ({ video, crew }) => {
         </>
       ) : (
         <div className="detailsBannerSkeleton">
-          <ContentWrapper>
+          <FooterWrapper>
             <div className="left skeleton"></div>
             <div className="right">
               <div className="row skeleton"></div>
@@ -289,7 +289,7 @@ const DetailsBanner = ({ video, crew }) => {
               <div className="row skeleton"></div>
               <div className="row skeleton"></div>
             </div>
-          </ContentWrapper>
+          </FooterWrapper>
         </div>
       )}
     </div>

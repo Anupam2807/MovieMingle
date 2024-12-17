@@ -6,12 +6,11 @@ import { FiUser } from "react-icons/fi"; // User Icon
 import { useNavigate, useLocation } from "react-router-dom";
 
 import "./style.scss";
-
-import ContentWrapper from "../ContentWrapper/ContentWrapper.jsx";
 import logo from "../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../Store/userSlice";
 import toast from "react-hot-toast";
+import FooterWrapper from "../FooterWrapper/footerWrapper";
 
 const Header = () => {  
   const [show, setShow] = useState("top");
@@ -96,7 +95,7 @@ const Header = () => {
 
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
-      <ContentWrapper>
+      <FooterWrapper>
         <div className="logo" onClick={() => navigate("/")}>
           <img src={logo} alt="logo" />
         </div>
@@ -145,11 +144,11 @@ const Header = () => {
             <SlMenu onClick={openMobileMenu} />
           )}
         </div>
-      </ContentWrapper>
+      </FooterWrapper>
 
       {showSearch && (
         <div className="searchBar">
-          <ContentWrapper>
+          <FooterWrapper>
             <div className="searchInput">
               <input
                 type="text"
@@ -159,7 +158,7 @@ const Header = () => {
               />
               <VscChromeClose onClick={() => setShowSearch(false)} />
             </div>
-          </ContentWrapper>
+          </FooterWrapper>
         </div>
       )}
     </header>

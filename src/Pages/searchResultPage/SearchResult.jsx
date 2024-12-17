@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import "./style.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchDataFromAPI } from '../../utils/api';
-import ContentWrapper from '../../Components/ContentWrapper/ContentWrapper.jsx';
 import MovieCard from '../../Components/MovieCard/MovieCard';
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import noResults from "../../assets/no-results.png"
+import FooterWrapper from '../../Components/FooterWrapper/footerWrapper.jsx';
 
 const SearchResult = () => {
   const[data,setData] = useState(null);
@@ -51,7 +51,7 @@ const SearchResult = () => {
     >
       {loading && <Spinner initial={true}/>}
       {!loading && (
-        <ContentWrapper>
+        <FooterWrapper>
           {data?.results.length>0 ?(
             <>
               <div className="pageTitle">
@@ -75,7 +75,7 @@ const SearchResult = () => {
             <span className="resultNotFound">Sorry Mate ! I dont have What You are looking For..
             </span>
           )}
-        </ContentWrapper>
+        </FooterWrapper>
       )}
 
     </div>

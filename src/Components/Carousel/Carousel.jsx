@@ -13,10 +13,11 @@ import PosterFallback from "../../assets/no-poster.png";
 
 import "./style.scss";
 
-import ContentWrapper from "../ContentWrapper/ContentWrapper.jsx";
+
 import CircleRating from "../circleRating/CirlceRating";
 import Genres from "../Genres/Genres";
 import Img from "../LazyLoadImage/Img.jsx";
+import FooterWrapper from "../FooterWrapper/footerWrapper.jsx";
 
 
 
@@ -65,7 +66,7 @@ const Carousel = ({data,loading,title,endpoint}) => {
   return (
     <div className="carousel">
         
-        <ContentWrapper>
+        <FooterWrapper>
         {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill className="carouselLeftNav arrow" 
         onClick={()=>{
@@ -135,7 +136,7 @@ const Carousel = ({data,loading,title,endpoint}) => {
         }
 
 
-        </ContentWrapper>
+        </FooterWrapper>
 
 
     </div>

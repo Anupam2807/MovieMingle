@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 import "./style.scss";
 
-import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper.jsx"
+
 import PlayIcon from "../Playicon";
 import VideoPopup from "../../../Components/videoPopUp/VideoPopUp.jsx";
 import Img from "../../../Components/LazyLoadImage/Img.jsx";
+import FooterWrapper from "../../../Components/FooterWrapper/footerWrapper.jsx";
 
 const VideosSection = ({ data, loading }) => {
     const [show, setShow] = useState(false);
@@ -23,7 +24,7 @@ const VideosSection = ({ data, loading }) => {
 
     return (
         <div className="videosSection">
-            <ContentWrapper>
+            <FooterWrapper>
                 <div className="sectionHeading">Official Videos</div>
                 {!loading ? (
                     <div className="videos">
@@ -51,7 +52,7 @@ const VideosSection = ({ data, loading }) => {
                         {loadingSkeleton()}
                     </div>
                 )}
-            </ContentWrapper>
+            </FooterWrapper>
             <VideoPopup
                 show={show}
                 setShow={setShow}

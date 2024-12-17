@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper.jsx"
 import "../Home.scss"
 import SwitchTabs from '../../../Components/switchTabs/SwitchTabs';
 import useFetch from "../../../hooks/UseFetch";
 import Carousel from '../../../Components/Carousel/Carousel';
+import FooterWrapper from '../../../Components/FooterWrapper/footerWrapper';
 
 
 const TopRated = () => {
@@ -25,12 +25,12 @@ const TopRated = () => {
     
 
     <div className='carouselSection'>
-        <ContentWrapper>
+        <FooterWrapper>
             <span className='carouselTitle'>Now Playing</span>
             <SwitchTabs data={["Movies", "Tv Shows"]} onTabChange={onTabChange}/>
 
         
-        </ContentWrapper>
+        </FooterWrapper>
       <Carousel data={data?.results} loading={loading} endpoint={endPoint} />
 
     </div>

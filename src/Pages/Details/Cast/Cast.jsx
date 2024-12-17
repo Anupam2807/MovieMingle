@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 
 import "./style.scss";
 import avatar from "../../../assets/avatar.png";
-import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper";
+
 import Img from "../../../Components/LazyLoadImage/Img";
+import FooterWrapper from "../../../Components/FooterWrapper/footerWrapper";
 const Cast = ({ data, loading }) => {
     const { url } = useSelector((state) => state.home);
 
@@ -19,7 +20,7 @@ const Cast = ({ data, loading }) => {
     };
     return (
         <div className="castSection">
-            <ContentWrapper>
+            <FooterWrapper>
                 <div className="sectionHeading">Top Cast</div>
                 {!loading ? (
                     <div className="listItems">
@@ -49,7 +50,7 @@ const Cast = ({ data, loading }) => {
                         {skeleton()}        
                     </div>
                 )}
-            </ContentWrapper>
+            </FooterWrapper>
         </div>
     );
 };

@@ -1,5 +1,4 @@
 import Select from "react-select/base";
-import ContentWrapper from "../../Components/ContentWrapper/ContentWrapper.jsx";
 import "./style.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import axios from "axios";
 import { fetchDataFromAPI } from "../../utils/api";
 import Spinner from "../../Components/Spinner/Spinner";
 import ListCard from "../../Components/ListCard/ListCard";
+import FooterWrapper from "../../Components/FooterWrapper/footerWrapper";
 
 const MyList = () => {
   let filters = {};
@@ -96,7 +96,7 @@ const MyList = () => {
   return (
     <>
     <div className="mylist">
-        <ContentWrapper>
+        <FooterWrapper>
           <div className="pageHeader">
             <div className="pageTitle">My Watch List</div>
           
@@ -131,7 +131,7 @@ const MyList = () => {
               )}
             </>
           )}
-        </ContentWrapper>
+        </FooterWrapper>
       </div>
     </>
   );

@@ -4,9 +4,8 @@ import { useSelector } from "react-redux";
 import "./style.scss";
 
 import useFetch from "../../../hooks/UseFetch";
-
-import ContentWrapper from "../../../Components/ContentWrapper/ContentWrapper"
 import Img from "../../../Components/LazyLoadImage/Img";
+import FooterWrapper from "../../../Components/FooterWrapper/footerWrapper";
 
 const HeroBanner = () => {
     const [background, setBackground] = useState("");
@@ -37,7 +36,7 @@ const HeroBanner = () => {
             )}
 
             <div className="opacity-layer"></div>
-            <ContentWrapper>
+            <FooterWrapper>
                 <div className="heroBannerContent">
                     <span className="title">Welcome.</span>
                     <span className="subTitle">
@@ -53,7 +52,7 @@ const HeroBanner = () => {
                         <button onClick={()=>navigate(`/search/${query}`)}>Search</button>
                     </div>
                 </div>
-            </ContentWrapper>
+            </FooterWrapper>
         </div>
     );
 };
