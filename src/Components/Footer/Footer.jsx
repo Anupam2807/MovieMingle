@@ -8,12 +8,12 @@ import {
 
 
 import "./style.scss";
-import ContentWrapper from "../ContentWrapper/ContentWrapper";
+import FooterWrapper from "../FooterWrapper/footerWrapper";
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <ContentWrapper>
+            <FooterWrapper>
                 <ul className="menuItems">
                     <li className="menuItem">Terms Of Use</li>
                     <li className="menuItem">Privacy-Policy</li>
@@ -38,7 +38,7 @@ const Footer = () => {
                         <FaLinkedin />
                     </span>
                 </div>
-            </ContentWrapper>
+            </FooterWrapper>
         </footer>
     );
 };
