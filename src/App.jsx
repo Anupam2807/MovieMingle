@@ -14,6 +14,7 @@ import {BrowserRouter,Routes,Route, useLocation} from "react-router-dom";
 import Auth from "./Pages/Auth/auth";
 import MyList from "./Pages/mylist/mylist";
 import { Toaster } from 'react-hot-toast';
+import ChatWidget from "./Components/chatbot/Chatbot";
 
  
 function App() {
@@ -67,7 +68,7 @@ function App() {
     <Toaster/>
 
  <Header />
-    
+  <ChatWidget/>    
 
     <Routes>
       <Route path="/"  element={<Home/>} />
