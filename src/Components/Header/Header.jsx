@@ -12,7 +12,7 @@ import { userData } from "../../Store/userSlice";
 import toast from "react-hot-toast";
 import FooterWrapper from "../FooterWrapper/footerWrapper";
 
-const Header = () => {  
+const Header = () => {
   const [show, setShow] = useState("top");
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -51,7 +51,7 @@ const Header = () => {
     setShowSearch(true);
     setMobileMenu(false);
   };
-  
+
   const searchQueryHandler = (event) => {
     const inputValue = event.target.value;
     if (event.key === "Enter" && inputValue.length > 0) {
@@ -73,25 +73,23 @@ const Header = () => {
     setMobileMenu(true);
     setShowSearch(false);
   };
-  
+
   const handleSignOut = () => {
     dispatch(userData({}));
     localStorage.removeItem("user");
     toast.success("Logged out Successfully!");
   };
 
-  const handleListNavigation = ()=>{
-    if(user){
-      navigate("/mywatchlist")
-    }
-    else{
+  const handleListNavigation = () => {
+    if (user) {
+      navigate("/mywatchlist");
+    } else {
       toast("Please log in into your account");
-      setTimeout(()=>{
-        navigate("/auth")
-      },1000)
+      setTimeout(() => {
+        navigate("/auth");
+      }, 1000);
     }
-  }
-
+  };
 
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
@@ -101,16 +99,19 @@ const Header = () => {
         </div>
 
         <ul className="menuItems">
-          <li className="menuItem" onClick={() => navigationHandler("movie")}>Movies</li>
-          <li className="menuItem" onClick={() => navigationHandler("tv")}>TV Shows</li>
-          
-          <li className="menuItem" onClick={handleListNavigation}>My Watchlist</li>
+          <li className="menuItem" onClick={() => navigationHandler("movie")}>
+            Movies
+          </li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+            TV Shows
+          </li>
 
-
+          <li className="menuItem" onClick={handleListNavigation}>
+            My Watchlist
+          </li>
 
           {user && (
             <>
-              
               <li className="menuItem">
                 <button onClick={handleSignOut}>Sign Out</button>
               </li>
@@ -119,22 +120,20 @@ const Header = () => {
 
           {!user && (
             <li className="menuItem ">
-              <button onClick={() => navigate("/auth")}>Sign In</button>
+              <button className="!text-[16px]" onClick={() => navigate("/auth")}>Sign In</button>
             </li>
           )}
 
           <li className="menuItem">
             <HiOutlineSearch onClick={openSearch} />
           </li>
-          {user &&
- <li className="menuItem userProfile">
- <FiUser />
- <span className="">{user?.username}</span>
-</li>
-          }
-         
+          {user && (
+            <li className="menuItem userProfile">
+              <FiUser />
+              <span className="">{user?.username}</span>
+            </li>
+          )}
         </ul>
-        
 
         <div className="mobileMenuItems">
           <HiOutlineSearch onClick={openSearch} />

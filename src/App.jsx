@@ -85,7 +85,7 @@ function App() {
   
    
    
-    {location.pathname !== "/auth" && <Footer />}
+     <Footer />
     </BrowserRouter>
 
 
